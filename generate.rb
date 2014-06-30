@@ -9,7 +9,7 @@ def create_csv
   end
   
   requests = File.open("requests.csv", "a")
-  5000.times do |t|
+  20000.times do |t|
     user = rand.to_s[2..8]
     rand(1..10).times do
       requests.puts [user, Faker::Internet.http_url].join(",")

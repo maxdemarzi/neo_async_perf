@@ -6,7 +6,7 @@ import akka.util.duration._
 import bootstrap._
 
 
-class TestAsyncViewed extends Simulation {
+class TestAsyncVisited extends Simulation {
   val httpConf = httpConfig
     .baseURL("http://localhost:7474")
     .acceptHeader("application/json")
@@ -24,12 +24,12 @@ class TestAsyncViewed extends Simulation {
 
   val testfile = csv("requests.csv").circular
 
-  val scn = scenario("User Viewed Async Unmanaged Extension")
+  val scn = scenario("User Visited Async Unmanaged Extension")
     .during(30) {
     feed(testfile)
       .exec(
-        http("Post Async Viewed Unmanaged Request")
-          .post("/v1/service/async/${userid}/viewed")
+        http("Post Async Visited Unmanaged Request")
+          .post("/v1/service/async/${userid}/visited")
           .body("""{"url": "${url}"}""")
           .check(status.is(201))
       )
